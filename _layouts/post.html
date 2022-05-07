@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  {%- include head.html -%}
+<body>
+  {%- include header.html -%}
+  <div class="content">
+    <div class="panel" id="clients">
+      <div class="post-header">
+        <div class="post-header-inner">
+          <h1>{{ page.title | escape }}</h1>
+          <span>{{ page.date | date: site.date_format }}</span>
+        </div>
+      </div>
+      <div class="post-nav">
+        
+          <span class="post-previous">
+            {%- if page.previous -%}
+            <a href="{{ page.previous.url }}" rel="prev">PREV</a>
+            {%- endif -%}
+          </span>
+        
+          <span class="post-home">
+            <a href="/">HOME</a>
+          </span>
+        
+          <span class="post-next">
+            {%- if page.next -%}
+            <a href="{{ page.next.url }}" rel="next">NEXT</a>
+            {%- endif -%}
+          </span>
+        
+      </div>
+      {{content}}
+      {%- include footer.html -%}
+    </div>  
+  </div>
+</body>
+</html>

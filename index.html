@@ -1,0 +1,17 @@
+---
+# Feel free to add content and custom Front Matter to this file.
+# To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
+
+layout: landing
+---
+
+<ul class="post-list">
+{%- for post in paginator.posts -%}
+  <a class="post menu-btn" href="{{ post.url | relative_url }}">
+    <h2>
+      {{ post.title | escape }}
+    </h2>
+    {{ post.date | date: site.date_format }}
+  </a>
+{%- endfor -%}
+</ul>

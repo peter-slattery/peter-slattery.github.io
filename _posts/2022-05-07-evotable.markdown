@@ -1,0 +1,40 @@
+---
+layout: post
+title:  "Evotable"
+date:   2022-05-07 03:41:30 -0700
+categories: [project]
+---
+## 
+
+## Backend Architecture
+We knew we'd be adding new game systems to the site as time went on. We wanted the process of adding a new system to be as easy and quick as possible, and to ensure that it meshed well with all other systems. The architecture we came up with is detailed below:
+
+1. Split out all data not related to game systems. This includes user profiles, display preferences, store accounts, payment processing, etc.
+2. Treat games the same for all systems, but allow for different data
+  Certain processes always happen when a game is created, no matter what system it is:
+    - each player receives a notification
+    - a record is created for the store admin
+    - etc.
+  All game creation and matchmaking goes through the same lambda function with one difference - each stack sets an environment variable called `gamesTable` which acts like a function argument to the entire lambda, pointing it at different system games tables.
+3. Use SNS to decouple common triggers from system-specific implementations
+  Each system requires its own submission and ranking logic. However, the interface for game submission is the same across systems, and there are some other processes we'd like to kick off from that trigger that are common to all systems. We use SNS to have a common submission endpoint that then passes an argument to SNS to trigger the correct system submission lambda
+
+```javascript
+var foob = 341.5;
+
+function test(bar) {
+  foob = 63;
+  console.log("hello world");
+  return bar + 1;
+}
+```
+
+```c
+uint32_t bar = 5;
+void main(int arg_count, char** args)
+{
+  char* myStr = "hello";
+  bar = 351.5f;
+  return 0;
+}
+```

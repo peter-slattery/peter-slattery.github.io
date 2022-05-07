@@ -72,6 +72,20 @@
     margin-bottom: 8px;
     padding: 0;
   }
+    .blog-post h2
+    {
+      font-family: Source Sans Pro;
+      font-style: normal;
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 23px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+
+      margin: 0;
+      margin-bottom: 8px;
+      padding: 0;
+    }
 
   h5
   {
@@ -170,6 +184,20 @@
     margin-bottom: 8px;
     padding: 0;
   }
+    .blog-post h2
+    {
+      font-family: Source Sans Pro;
+      font-style: normal;
+      font-weight: 700;
+      font-size: 24px;
+      line-height: 100%;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+
+      margin: 0;
+      margin-bottom: 8px;
+      padding: 0;
+    }
 
   h5
   {
@@ -754,6 +782,16 @@ a.more-btn div
   margin-bottom: 16px;
 }
 
+.blog-post h2
+{
+  margin-top: 32px;
+}
+
+.blog-post img
+{
+  margin-bottom: 0;
+  object-fit: contain;
+}
 
 /* CODE HIGHLIGHTS */
 
@@ -771,7 +809,7 @@ a.more-btn div
 .highlight .p { color: #d0d0d0 } /* Punctuation */
 .highlight .ch { color: #999999; font-style: italic } /* Comment.Hashbang */
 .highlight .cm { color: #999999; font-style: italic } /* Comment.Multiline */
-.highlight .cp { color: #cd2828; font-weight: bold } /* Comment.Preproc */
+.highlight .cp { color: #2a807a; font-weight: bold } /* Comment.Preproc */
 .highlight .cpf { color: #999999; font-style: italic } /* Comment.PreprocFile */
 .highlight .c1 { color: #999999; font-style: italic } /* Comment.Single */
 .highlight .cs { color: #e50808; font-weight: bold; background-color: #520000 } /* Comment.Special */

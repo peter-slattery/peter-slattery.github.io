@@ -4,37 +4,89 @@ title:  "Evotable"
 date:   2022-05-07 03:41:30 -0700
 categories: [project]
 ---
-## 
+Evotable is a Ranking & Matchmaking platform for tabletop wargaming systems that is a collaboration between Mythicos Studios, Z4Industries, and PSJR. 
 
-## Backend Architecture
-We knew we'd be adding new game systems to the site as time went on. We wanted the process of adding a new system to be as easy and quick as possible, and to ensure that it meshed well with all other systems. The architecture we came up with is detailed below:
+PSJR were brought on after an initial, very early prototype was completed. Our task was to design, brand, launch, and scale the application.
+
+![Alt Text](/assets/images/evo_02.png)
+
+## Challenges
+1. Support Ranking and Matchmaking Across Multiple Systems
+2. Display Content for 4 Distinct User Types
+3. Support Tournaments & Events
+
+## Technology Overview
+We built the site using React, AWS (primarily DynamoDB and Lambda), and Serverless-Stack all in Javascript.
+
+## Unified Language
+Choosing to build the entire site in Javascript turned out to be a huge advantage – to the point that today, we are working on removing any files written in anything other than Javascript and CSS (there are some YAML files from legacy versions of serverless that are still in use). This decision meant that either of the two programmers could jump in to either frontend or backend problems & tasks quickly and efficiently. Even our designer was able to jump in and write full pages on their own and see them live on the site very quickly.
+
+## Challenge 1: Multi System Architecture
+![Alt Text](/assets/images/evo_01.png)
+The core of the application is a ranking and matchmaking service. Players create accounts, find opponents of similar skill, challenge each other to matches at hobby stores, and play the game keeping track of their score in the app. After the match is over, each player's and each faction's ranks are updated to reflect the results.
+
+This is already a complex system, involving realtime and async interactions, admin approval of final scores, and a custom ranking algorithm designed specifically for this application. But it gets quite a bit more complex when you consider that we want to do this for all tabletop wargaming systems that exist.
+
+The architecture we came up with lets us customize the in-game scoring and ranking parts of the app to each system, while providing maximum reuse of common components. A high level outline is detailed below:
 
 1. Split out all data not related to game systems. This includes user profiles, display preferences, store accounts, payment processing, etc.
-2. Treat games the same for all systems, but allow for different data
-  Certain processes always happen when a game is created, no matter what system it is:
-    - each player receives a notification
-    - a record is created for the store admin
-    - etc.
-  All game creation and matchmaking goes through the same lambda function with one difference - each stack sets an environment variable called `gamesTable` which acts like a function argument to the entire lambda, pointing it at different system games tables.
-3. Use SNS to decouple common triggers from system-specific implementations
-  Each system requires its own submission and ranking logic. However, the interface for game submission is the same across systems, and there are some other processes we'd like to kick off from that trigger that are common to all systems. We use SNS to have a common submission endpoint that then passes an argument to SNS to trigger the correct system submission lambda
-
-```javascript
-var foob = 341.5;
-
-function test(bar) {
-  foob = 63;
-  console.log("hello world");
-  return bar + 1;
-}
+2. Each system gets a unique code and table for games, plus tables for any custom data the system needs. For example
 ```
-
-```c
-uint32_t bar = 5;
-void main(int arg_count, char** args)
 {
-  char* myStr = "hello";
-  bar = 351.5f;
-  return 0;
-}
+  systemName: "Bolt Action",
+  systemId: "Bolt",
+  gamesTable: "GamesBolt",
+  customTables: [
+    "BoltFactions",
+    "BoltMissions",
+  ],
+},
+{
+  systemName: "Mythic Americas",
+  systemId: "MythAm",
+  gamesTable: "GamesMythAm",
+  customTables: [],
+},
+// ... etc 
 ```
+3. While each system is allowed to put custom data into it's `gamesTable`, each game has some things in common like a unique id, player ids, and time played.
+4. There are common paths for the creation, and submission of matches. 
+  - **Creation**: All games are created the same way. Before a game is actually played, they all look the same because they all use the same scheduling functionality to reserve space at a store on a date. Notifications are sent out in the same way for all systems as well.
+  - **Submission**: Unlike creation, submission is wildly customized to each system since submission needs to know things like victory conditions (which can depend on the mission and factions chosen) and needs access to system specific tables like `BoltFactions` to update their rankings. But there are also some things that happen for every game on submission like removing it from the store's queue of active games. We decouple these through the use of SNS Notifications.
+
+  Note: In general, this pattern holds for a number of similar systems, things like notification sending, badges, and system-specific metrics display such as leaderboards or faction ranks.
+
+This structure means that each system has a common interface to implement that looks something like:
+```javascript
+const systemBolt = {
+  onGameCreated:  (gameData, systemTable, dynamoDb) => { /* ... */ },
+  onGameSubmited: (gameData, systemTable, dynamoDb) => { /* ... */ },
+
+  getSystemSpecificMetrics_forPlayer:       (playerId) => {}
+  getSystemSpecificMetrics_forSystemEntity: (entityId) => {} // for factions, missions, etc
+  getSystemSpecificMetrics_forGame:         (gameId) => {},
+  getSystemSpecificMetrics_forStore:        (storeId) => {}
+};
+```
+This in turn makes these functions very easy to implement and easy to test.
+
+## Challenge 2: Different Users
+![Alt Text](/assets/images/evo_00.png)
+
+Evotable serves 4 different kinds of users:
+- **Players** - Want to see detailed statistics about their recent games, the factions they play, and upcoming events relevant to them.
+- **Store Owners** - want leaderboards they can put up on their TVs, and information about the local meta.
+- **Game System Administrators, Sales Reps, Game Designers** - want to know which stores and players play the most, and about the global meta of the game.
+- **Evotable Admins** - (we) want to know about bugs encountered, games submitted per day, and account creation.
+
+We created our own permissions system (AWS' is just clunky and awful to deal with) that lets us set permissions per group of functionality in a composable way. These permissions look like:
+- **No Permissions** - a player. Allowed to play games. If you have any permissions, your ability to play games is removed.
+- **Game Admin** - can approve games played
+- **Store Admin** - can remove games requested at the store, send notifications to the store's players, etc.
+- **System Admin** - can change and create system specific information like Missions, Factions, etc. Useful for keeping up with game updates as they come out.
+
+These permissions in turn grand access to certain lambdas and certain front end routes. Those routes even get filtered to produce our navigation menus on the site - you only see links to pages you have acces to.
+
+## Challenge 3: Tournaments And Events
+We are actively figuring this one out as we speak. The challenge here is that we don't want a separate system for tracking tournament matches. However, each tournament match needs to be able to be rolled back/undone by the tournament organizer. ELO is a cumulative algorithm with each submission changing the landscape for subsequent submissions. Undoing a submission even 2 games back is a huge undertaking. We are still figuring out the architecture for this problem.
+

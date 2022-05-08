@@ -292,6 +292,10 @@ a
     color: white;
     text-decoration: none;
   }
+  .sticky-menu a
+  {
+    text-decoration: none !important;
+  }
 
 .content
 {

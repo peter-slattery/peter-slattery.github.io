@@ -525,11 +525,18 @@ a.more-btn div
       fill: white;
     }
 
+.sort-list
+{
+  display: flex;
+  gap: 32px;
+}
+
 /* DESKTOP */
 @media screen and (min-width: 820px)
 {
   .client-grid { grid-template-columns: 1fr 1fr 1fr 1fr 1fr; }
 
+  .category-header { margin-top: 24px; }
   /* MENU */
     .sticky-menu
     {
@@ -547,12 +554,12 @@ a.more-btn div
         border-left: none;
         height: 35px;
       }
-        .sticky-menu .menu-btn:first-child
+        .sticky-menu a:first-child .menu-btn
         {
           border-left: 1px solid white;
           border-radius: 0 0 0 8px;
         }
-        .sticky-menu .menu-btn:last-child
+        .sticky-menu a:last-child .menu-btn
         {
           border-radius: 0 0 8px 0;
         }

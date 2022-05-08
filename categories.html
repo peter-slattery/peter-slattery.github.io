@@ -1,0 +1,26 @@
+---
+# Feel free to add content and custom Front Matter to this file.
+# To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
+
+title: Categories
+layout: landing
+---
+
+{%- assign categories = site.categories | sort -%}
+{%- for category in categories -%}
+
+  {%- assign categoryName = category[0] -%}
+  {%- assign categoryNumPosts = category[1] | size -%}
+  <h4 class="category-header" id="{{categoryName | uri_escape | downcase }}">{{ categoryName }}</h4>
+
+    {% assign sorted_posts = category[1] | reversed %}
+    {% for post in sorted_posts %}
+    <a class="post menu-btn" href="{{ post.url | relative_url }}">
+      <h2>
+        {{ post.title | escape }}
+      </h2>
+      <h2>{{ post.date | date: site.date_format }}</h2>
+    </a>
+  {% endfor %}
+
+{%- endfor -%}

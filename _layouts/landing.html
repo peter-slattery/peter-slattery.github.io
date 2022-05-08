@@ -6,7 +6,11 @@
   <div class="content">
     {%- include nav.html -%}
     <div class="panel" id="clients">
-      <h3>Blog</h3>
+      <h3>{{ page.title }}</h3>
+      <div class="sort-list">
+        <a href="/">BY DATE</a>
+        <a href="/categories">BY CATEGORY</a>
+      </div>
       {{content}}
       {%- include footer.html -%}
     </div>  

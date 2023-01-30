@@ -675,8 +675,8 @@ a.more-btn:hover div
   {
     min-width: 740px;
   }
-
-    
+  
+  
   .blog-post blockquote {
     border-left: 3px solid gray;
     text-decoration: italic;
@@ -690,7 +690,7 @@ a.more-btn:hover div
   ol ul {
     margin-block-start: 8px;
   }
-
+  
   
   ul ol {
     margin-block-start: 8px;
@@ -802,7 +802,7 @@ a.more-btn:hover div
     height: 185px;
     margin-bottom: 15px;
   }
-
+  
   .blog-post blockquote {
     border-left: 3px solid gray;
     text-decoration: italic;
@@ -828,6 +828,10 @@ a.more-btn:hover div
   padding-block-end: 0.5em;
   border-radius: 8px;
   margin-bottom: 4px;
+}
+
+pre.highlight 
+{
   overflow-x: scroll;
 }
 

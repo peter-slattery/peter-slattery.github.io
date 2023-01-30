@@ -38,7 +38,7 @@ plugins:
 permalink: /:title/
 markdown: kramdown
 highlighter: rouge
-paginate: 5
+paginate: 50
 paginate_path: "/:num/"
 date_format: "%m.%d.%Y"
 

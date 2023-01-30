@@ -106,8 +106,8 @@
     font-family: 'Source Sans Pro';
     font-style: normal;
     font-weight: 400;
-    font-size: 16px;
-    line-height: 20px;
+    font-size: 18px;
+    line-height: 24px;
     
     margin: 0;
     padding: 0;
@@ -219,8 +219,8 @@
     font-family: 'Source Sans Pro';
     font-style: normal;
     font-weight: 400;
-    font-size: 16px;
-    line-height: 20px;
+    font-size: 18px;
+    line-height: 24px;
     
     margin: 0;
     padding: 0;
@@ -242,7 +242,9 @@
 html, body {
   margin: 0;
   padding: 0;
-  overflow: scroll;
+  width: 100vw;
+  height: 100vh;
+  overflow-y: scroll;
 }
 
 /* Background Images */
@@ -467,13 +469,14 @@ a.more-btn:hover div
 {
   width: 100%;
   margin-bottom: 30px;
+  position: relative;
 }
 .post-header::after
 {
   content: '';
   position: absolute;
   display: block;
-  width: 740px;
+  width: 100%;
   margin-top: 15px;
   border-bottom: 1px solid white;
 }
@@ -625,9 +628,9 @@ a.more-btn:hover div
     width: 820px;
     max-width: 820px;
     
-    background: rgba(255, 255, 255, 0.01);
+    background: rgba(20, 20, 32, 1);
     box-shadow: 0px 0px 32px rgba(0, 0, 0, 0.35);
-    backdrop-filter: blur(32px);
+    /* backdrop-filter: blur(32px); */
     border-radius: 8px;
     
     padding-left:   39px;
@@ -671,6 +674,26 @@ a.more-btn:hover div
   .more-btn div
   {
     min-width: 740px;
+  }
+
+    
+  .blog-post blockquote {
+    border-left: 3px solid gray;
+    text-decoration: italic;
+    font-style: italic;
+    background-color: rgba(1,1,1,0.4);
+    padding: 8px;
+    padding-left: 16px;
+    margin-right: 96px;
+  }
+  
+  ol ul {
+    margin-block-start: 8px;
+  }
+
+  
+  ul ol {
+    margin-block-start: 8px;
   }
 }
 
@@ -739,12 +762,13 @@ a.more-btn:hover div
   .panel
   {
     box-sizing: border-box;
-    width: 355px;
-    max-width: 355px;
+    width: 100%;
+    max-width: 400px;
     
-    background: rgba(255, 255, 255, 0.01);
+    background: rgba(20, 20, 32, 1);
+    /* background: rgba(255, 255, 255, 0.01); */
     box-shadow: 0px 0px 32px rgba(0, 0, 0, 0.35);
-    backdrop-filter: blur(32px);
+    /* backdrop-filter: blur(32px); */
     border-radius: 8px;
     
     padding-left:   15px;
@@ -778,6 +802,18 @@ a.more-btn:hover div
     height: 185px;
     margin-bottom: 15px;
   }
+
+  .blog-post blockquote {
+    border-left: 3px solid gray;
+    text-decoration: italic;
+    font-style: italic;
+    background-color: rgba(1,1,1,0.4);
+    padding: 8px;
+    padding-left: 16px;
+    margin-right: 16px;
+    margin-inline-start: 10px;
+  }
+  
 }
 
 /* POST FORMATTING */
@@ -792,6 +828,7 @@ a.more-btn:hover div
   padding-block-end: 0.5em;
   border-radius: 8px;
   margin-bottom: 4px;
+  overflow-x: scroll;
 }
 
 .blog-post h2

@@ -10,7 +10,7 @@ I've gone through the process of setting up and organizing a cross-platform code
 ## One Command Builds
 I often find myself coming back to projects after a few months and not knowing how to get it building again. I don't use things like makefiles for this reason - they just overcomplicate things. At the end of the day, I want to get the project compiling again as quickly as possible. So why not make it a one line command?
 
-I learned from Allan Webster (over at Mr4thDimension on YouTube) that you can run bash on any platform where you can run git. So I started writing build scripts in bash. The pattern generally goes like:
+I learned from Allen Webster (over at Mr4thDimension on YouTube) that you can run bash on any platform where you can run git. So I started writing build scripts in bash. The pattern generally goes like:
 
 ```bash
 set OS=$1

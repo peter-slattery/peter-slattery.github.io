@@ -74,8 +74,6 @@ A set of function prototypes that a user application can tie into to customize t
 *You can read more about the [Platform Layer Separation](/structuring-cross-platform-projects/) in this blog post*
 
 ## And it works!
-Its been through a number of iterations. There was a node based interface for a while (which I still dream of bringing back someday).
-![](/assets/images/lumenarium_02.mp4)
 I added a built in time and memory profiler.
 ![Lumenarium](/assets/images/lumenarium_03.png)
 Here's one of our latest tests, using it to run a new sculpture.

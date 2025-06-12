@@ -43,6 +43,20 @@
     margin: 0;
     padding: 0;
   }
+    .blog-post h2
+    {
+      font-family: Source Sans Pro;
+      font-style: normal;
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 23px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+
+      margin: 0;
+      margin-bottom: 8px;
+      padding: 0;
+    }
 
   h3
   {
@@ -59,20 +73,6 @@
   }
 
   h4
-  {
-    font-family: Source Sans Pro;
-    font-style: normal;
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 23px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-
-    margin: 0;
-    margin-bottom: 8px;
-    padding: 0;
-  }
-  .blog-post h2
   {
     font-family: Source Sans Pro;
     font-style: normal;
@@ -162,9 +162,9 @@
     font-family: Source Sans Pro;
     font-style: normal;
     font-weight: 700;
-    font-size: 36px;
-    line-height: 45px;
-    letter-spacing: 7px;
+    font-size: 18px;
+    line-height: 18px;
+    letter-spacing: 3px;
     text-transform: uppercase;
 
     margin: 0;
@@ -639,18 +639,11 @@ a.more-btn:hover div
 
     margin-bottom: 45px;
   }
+
   .panel h3
   {
-    text-align: center;
-    margin-bottom: 60px;
-  }
-  .panel h3:after {
-    content: '';
-    position: absolute;
-    display: block;
-    width: 740px;
-    margin-top: 30px;
-    border-bottom: 1px solid white;
+    margin-top: 24px;
+    margin-bottom: 24px;
   }
 
   .panel h4

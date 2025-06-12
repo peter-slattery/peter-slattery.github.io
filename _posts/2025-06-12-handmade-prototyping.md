@@ -35,7 +35,7 @@ At first, I have little (or misplaced) confidence. Therefore, I shouldn't build 
 
 ## How to Prototype, By Example
 
-Let's imagine we're making a Deck Building app for a game like Magic: The Gathering, or Pokemon. This is fairly well trod ground - but how would we approach it from first principles, or in the handmade way, doing it from scratch?
+Let's imagine we're making a Deck Building app for a game like Magic: The Gathering, or Pokémon. This is fairly well trod ground - but how would we approach it from first principles, or in the handmade way, doing it from scratch?
 
 Well, in the beginning, I have no idea what this app could look like. I know it'll need to track cards, and draw them on screen. Save and load a collection, maybe sync to a server. This is all tech I can start building safely - in other words, I have high confidence these pieces are right.
 
@@ -52,7 +52,7 @@ A new question emerges from the tall grass: "Which piles are the right piles?"
 For example, I know for Magic, I might have one set of piles by color - so Red, Green, Blue, White, Black, Colorless. I might have another set by function - Card Draw, Board Wipe, Removal, Protection, Big Stompy, etc. Are these right? Am I missing any?
 
 How fast can I answer this question with high confidence?
-One way would be to draw each set of piles on a piece of printer paper - nothing fancy just named boxes. That way you can see all your options. Then, go back to your LGS. This time, we're going to try and keep our meetings shorter so we can do more of them with more people - 10 minutes tops. Give each person the pages and ask them to take a deck of theirs and sort the cards into the named piles. Then do it again on the next sheet, and so on. I guarantee you will here things like:
+One way would be to draw each set of piles on a piece of printer paper - nothing fancy just named boxes. That way you can see all your options. Then, go back to your LGS. This time, we're going to try and keep our meetings shorter so we can do more of them with more people - 10 minutes tops. Give each person the pages and ask them to take a deck of theirs and sort the cards into the named piles. Then do it again on the next sheet, and so on. I guarantee you will hear things like:
 
 - "This is cool - can we add a pile called X to page 3?"
 - "I wouldn't use that page at all - it doesn't make sense for reason X, Y, and Z"
@@ -82,7 +82,7 @@ This is a fine piece of engineering - it renders at 60Hz, has animations and eff
 - no way to sort cards already in the deck
 - no way to investigate what my deck might be lacking, or have too much of
 
-But the actual problem isn't that you made something that's wrong... it's that you probably spent a few weeks building it! Now, you go to your LGS for the first time, excited to show off your app and... nobody tells you its bad, but they very politely stop showing interest after a few minutes. You've wasted time and money, and now, honestly, how excited are you to keep working on this anymore?
+But the actual problem isn't that you made something that's wrong... it's that you probably spent a few weeks building it! Now, you go to your LGS for the first time, excited to show off your app and... nobody tells you it's bad, but they very politely stop showing interest after a few minutes. You've wasted time and money, and now, honestly, how excited are you to keep working on this anymore?
 
 This is why you should build prototypes!
 
@@ -90,7 +90,7 @@ This is why you should build prototypes!
 
 *(I mean, you're already putting up with me droning on about one of my favorite topics, why not indulge me in one more?)*
 
-I have a background in fine art; I studied Illustration in college. Every student at RISD takes the same 3 classes their freshman year - Drawing, 2D Design, and 3D Design. The founders and organizers of RISD believe that it is so important for every artist to be able to draw - from sculptors and painters to graphic designers and industrial designers - that they make everyone devote at least 2 full semester classes to it (and mind you, these classes meet 1/week for 8 hours and assign roughly 20 hours of homework each week - its brutal).
+I have a background in fine art; I studied Illustration in college. Every student at RISD takes the same 3 classes their freshman year - Drawing, 2D Design, and 3D Design. The founders and organizers of RISD believe that it is so important for every artist to be able to draw - from sculptors and painters to graphic designers and industrial designers - that they make everyone devote at least 2 full semester classes to it (and mind you, these classes meet 1/week for 8 hours and assign roughly 20 hours of homework each week - it's brutal).
 
 You've seen sketches everywhere from museums to bar napkins. But what are sketches **for**? Sketches answer questions about a final piece of art. Each sketch answers a different question, or multiple sketches can be used to explore multiple answers to the same question. They're basically prototypes - but thousands of years old, as opposed to the tech-jargon-nonsense the term 'prototype' has become in the last 40 years (though I did learn prototype was first used in the 1500s, so that's cool!).
 
@@ -108,7 +108,7 @@ Whats more costly than re-painting a limb? How about buying a new chunk of marbl
 
 ![Michelangelo Sketch](/assets/images/michelangelo0.jpg)
 
-What's even more important to me, is that we see him using a different medium than his final one to protype in. This sketch was done in red chalk (probably, I'm not an art historian and didn't dig too deep), while the final piece (what you see below) was painted in frescoe in the Cistine Chapel.
+What's even more important to me, is that we see him using a different medium than his final one to prototype in. This sketch was done in red chalk (probably, I'm not an art historian and didn't dig too deep), while the final piece (what you see below) was painted in frescoe in the Cistine Chapel.
 
 *I'm going to get dragged through the network for this but...*<br />
 Working on understanding an algorithm? Maybe sketch out an implementation in javascript, and ignore memory til you understand what has to happen. <br />
